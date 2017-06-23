@@ -6,12 +6,15 @@ This code performs Reduce Side join of folowing two files to find out total_sale
 Example data set
 
 Customers
+
 customer_id	customer_name	zip_code	City	state
 
 Sales
+
 customer_id	sales_price	timestamp
 
 Output Expected 
+
 state total_sales
 
 Steps for running the Code.
