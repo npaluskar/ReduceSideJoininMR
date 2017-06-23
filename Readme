@@ -1,0 +1,55 @@
+# ReduceSideJoininMR
+Performing Reduce Side Join in Java Mapreduce
+
+This code performs Reduce Side join of folowing two files to find out total_sales by state. Both the files are tab delimited. 
+
+Example data set
+
+Customers
+
+customer_id	customer_name	zip_code	City	state
+293743	Hanna Blanchette	14884	Swain	NY
+139320	Susie Dykes	84028	Garden City	UT
+1354208	Annmarie Ingle	59632	Boulder	MT
+212995	Owen Crowe	21634	Fishing Creek	MD
+1207517	Scarlett Key	37375	Sewanee	TN
+1836560	Bess Newberry	38833	Burnsville	MS
+254275	Eloy Denton	83551	Spalding	ID
+
+Sales
+customer_id	sales_price	timestamp
+293743	2904.319	04/22/15 10:11 AM
+139320	6465.994	04/19/14 07:33 AM
+1354208	7057.532	12/16/13 03:10 AM
+212995	4810.933	05/13/13 03:03 AM
+1207517	6418.804	05/31/13 03:11 AM
+1836560	8539.784	10/15/15 07:54 AM
+254275	5307.807	03/20/11 01:21 AM
+1188691	7101.701	07/14/14 06:22 AM
+
+
+Output Expected 
+state total_sales
+AK	33039895.963730
+AL	102980648.112251
+AR	86556361.243446
+AS	126330.954483
+AZ	61656374.513397
+CA	320460138.463722
+CO	79279139.843376
+CT	52061732.315170
+DC	33117474.002777
+DE	12281158.218491
+
+
+
+Steps for running the Code.
+1. javac -classpath ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-client-core-${HADOOP_VERSION}.jar:${HADOOP_HOME}/share/hadoop/common/hadoop-common-${HADOOP_VERSION}.jar -d ${HOME}/reducejoin_assignment TotalSalesByState.java
+2. cd ..
+3. jar -cvf totalsalesbystate.jar -C ${HOME}/reducejoin_assignment/ .
+4. hadoop jar totalsalesbystate.jar TotalSalesByState /hdfs_file/customers /hdfs_file/sales /hdfs_file/total_sales
+5. hadoop fs -rmr  /hdfs_path/intermediate_output (For next run)
+
+Similar Hive Query for this Mapreduce Code would be
+
+select state,count(*) from customers group by state;
