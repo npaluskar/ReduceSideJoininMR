@@ -3,7 +3,7 @@ Performing Reduce Side Join in Java Mapreduce
 
 This code performs Reduce Side join of folowing two files to find out total_sales by state. Both the files are tab delimited. 
 
-Example data set
+Schema for files
 
 Customers
 
