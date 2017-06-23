@@ -30,7 +30,7 @@ Steps for running the Code.
 
 Similar Hive Query for this Mapreduce Code would be
 
-select state,count(*) from customers group by state;
+select c.state,sum(sales_price) as total_sales from customers c,sales s where c.customer_id = s.customer_id group by c.state;
 
 
 
